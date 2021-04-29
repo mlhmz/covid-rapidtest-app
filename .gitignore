@@ -1,0 +1,4 @@
+# Project exclude paths
+/target/
+/covid-rapidtest-app.iml
+/.idea/
