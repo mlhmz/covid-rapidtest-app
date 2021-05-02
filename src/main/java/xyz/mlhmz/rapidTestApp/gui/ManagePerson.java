@@ -86,7 +86,7 @@ public class ManagePerson {
 
     public void run() {
         reloadList();
-        frame = new JFrame("Delete Person");
+        frame = new JFrame("Manage Persons");
         frame.add(panel);
         frame.pack();
         frame.setVisible(true);
