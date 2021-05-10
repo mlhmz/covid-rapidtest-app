@@ -1,8 +1,8 @@
 package xyz.mlhmz.rapidTestApp.gui;
 
-import xyz.mlhmz.rapidTestApp.database.dao.DAO;
-import xyz.mlhmz.rapidTestApp.database.dao.Persons;
-import xyz.mlhmz.rapidTestApp.database.dao.Tests;
+import xyz.mlhmz.rapidTestApp.database.repositories.Repository;
+import xyz.mlhmz.rapidTestApp.database.repositories.Persons;
+import xyz.mlhmz.rapidTestApp.database.repositories.Tests;
 import xyz.mlhmz.rapidTestApp.database.entities.Person;
 import xyz.mlhmz.rapidTestApp.database.entities.Test;
 
@@ -182,8 +182,8 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Long id = Long.parseLong(testTable.getValueAt(testTable.getSelectedRow(), 0).toString());
-                DAO dao = new Tests();
-                dao.delete(id);
+                Repository repository = new Tests();
+                repository.delete(id);
                 reloadTable();
             }
         });
@@ -238,7 +238,7 @@ public class MainWindow {
     }
 
     public void reloadTable() {
-        DAO dao;
+        Repository repository;
 
         // JTable Content
         DefaultTableModel newTableModel = new DefaultTableModel() {
@@ -263,12 +263,12 @@ public class MainWindow {
             newTableModel.addColumn(column);
         }
 
-        dao = new Tests();
+        repository = new Tests();
 
-        for (Object o : dao.get()) {
+        for (Object o : repository.get()) {
             Test test = (Test) o;
-            dao = new Persons();
-            Person person = (Person) dao.getById(test.getPersonId());
+            repository = new Persons();
+            Person person = (Person) repository.getById(test.getPersonId());
             String testResult = "null";
             if (test.isPositive()) {
                 testResult = "positive";
@@ -293,7 +293,7 @@ public class MainWindow {
     }
 
     public void searchTable(SearchModes searchMode, Object searchData) {
-        DAO dao;
+        Repository repository;
 
         // JTable Content
         DefaultTableModel newTableModel = new DefaultTableModel() {
@@ -318,14 +318,14 @@ public class MainWindow {
             newTableModel.addColumn(column);
         }
 
-        dao = new Tests();
+        repository = new Tests();
 
         switch(searchMode) {
             case BY_NAME:
-                for (Object o : dao.get()) {
+                for (Object o : repository.get()) {
                     Test test = (Test) o;
-                    dao = new Persons();
-                    Person person = (Person) dao.getById(test.getPersonId());
+                    repository = new Persons();
+                    Person person = (Person) repository.getById(test.getPersonId());
 
                     String personName = person.getFirstName() + " " + person.getLastName();
 
@@ -353,11 +353,11 @@ public class MainWindow {
                 }
                 break;
             case BY_TEST_ID:
-                for (Object o : dao.get()) {
+                for (Object o : repository.get()) {
                     Test test = (Test) o;
                     if (test.getTestId().equals(Long.parseLong((String) searchData))) {
-                        dao = new Persons();
-                        Person person = (Person) dao.getById(test.getPersonId());
+                        repository = new Persons();
+                        Person person = (Person) repository.getById(test.getPersonId());
                         String testResult = "null";
                         if (test.isPositive()) {
                             testResult = "positive";
@@ -378,11 +378,11 @@ public class MainWindow {
                 }
                 break;
             case BY_PERSON_ID:
-                for (Object o : dao.get()) {
+                for (Object o : repository.get()) {
                     Test test = (Test) o;
                     if (test.getPersonId().equals(Long.parseLong((String) searchData))) {
-                        dao = new Persons();
-                        Person person = (Person) dao.getById(test.getPersonId());
+                        repository = new Persons();
+                        Person person = (Person) repository.getById(test.getPersonId());
                         String testResult = "null";
                         if (test.isPositive()) {
                             testResult = "positive";

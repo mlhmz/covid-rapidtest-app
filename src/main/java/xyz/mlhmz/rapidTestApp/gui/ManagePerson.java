@@ -1,8 +1,8 @@
 package xyz.mlhmz.rapidTestApp.gui;
 
-import xyz.mlhmz.rapidTestApp.database.dao.DAO;
-import xyz.mlhmz.rapidTestApp.database.dao.Persons;
-import xyz.mlhmz.rapidTestApp.database.dao.Tests;
+import xyz.mlhmz.rapidTestApp.database.repositories.Repository;
+import xyz.mlhmz.rapidTestApp.database.repositories.Persons;
+import xyz.mlhmz.rapidTestApp.database.repositories.Tests;
 import xyz.mlhmz.rapidTestApp.database.entities.Person;
 import xyz.mlhmz.rapidTestApp.database.entities.Test;
 
@@ -32,19 +32,19 @@ public class ManagePerson {
                 return;
             }
 
-            DAO dao = new Tests();
+            Repository repository = new Tests();
             Person person = (Person) personList.getSelectedValue();
 
-            for (Object o : dao.get()) {
+            for (Object o : repository.get()) {
                 Test test = (Test) o;
                 if (test.getPersonId().equals(person.getId())) {
-                    dao.delete(test.getTestId());
+                    repository.delete(test.getTestId());
                 }
             }
 
-            dao = new Persons();
+            repository = new Persons();
 
-            dao.delete(person.getId());
+            repository.delete(person.getId());
             reloadList();
         });
 
@@ -86,7 +86,7 @@ public class ManagePerson {
 
     public void run() {
         reloadList();
-        frame = new JFrame("Delete Person");
+        frame = new JFrame("Manage Person");
         frame.add(panel);
         frame.pack();
         frame.setVisible(true);
@@ -94,9 +94,9 @@ public class ManagePerson {
     }
 
     public void reloadList() {
-        DAO dao = new Persons();
+        Repository repository = new Persons();
         personListModel = new DefaultListModel<Person>();
-        personListModel.addAll(dao.get());
+        personListModel.addAll(repository.get());
 
         personList.setModel(personListModel);
     }

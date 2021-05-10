@@ -1,13 +1,10 @@
 package xyz.mlhmz.rapidTestApp.gui;
 
-import xyz.mlhmz.rapidTestApp.database.dao.DAO;
-import xyz.mlhmz.rapidTestApp.database.dao.Persons;
-import xyz.mlhmz.rapidTestApp.database.dao.Tests;
+import xyz.mlhmz.rapidTestApp.database.repositories.Repository;
+import xyz.mlhmz.rapidTestApp.database.repositories.Persons;
 import xyz.mlhmz.rapidTestApp.database.entities.Person;
-import xyz.mlhmz.rapidTestApp.database.entities.Test;
 
 import javax.swing.*;
-import java.util.Date;
 
 public class CreatePerson {
     private JTextField firstNameField;
@@ -25,7 +22,7 @@ public class CreatePerson {
 
     public CreatePerson() {
         addButton.addActionListener((event) -> {
-            DAO dao;
+            Repository repository;
             Person person = new Person();
 
             person.setFirstName(firstNameField.getText());
@@ -33,9 +30,9 @@ public class CreatePerson {
             person.setPhoneNumber(phoneNumberField.getText());
             person.setAddress(addressField.getText());
 
-            dao = new Persons();
+            repository = new Persons();
 
-            dao.create(person);
+            repository.create(person);
 
             frame.dispose();
 

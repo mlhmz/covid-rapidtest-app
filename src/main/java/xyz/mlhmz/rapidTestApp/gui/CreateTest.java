@@ -1,8 +1,8 @@
 package xyz.mlhmz.rapidTestApp.gui;
 
-import xyz.mlhmz.rapidTestApp.database.dao.DAO;
-import xyz.mlhmz.rapidTestApp.database.dao.Persons;
-import xyz.mlhmz.rapidTestApp.database.dao.Tests;
+import xyz.mlhmz.rapidTestApp.database.repositories.Repository;
+import xyz.mlhmz.rapidTestApp.database.repositories.Persons;
+import xyz.mlhmz.rapidTestApp.database.repositories.Tests;
 import xyz.mlhmz.rapidTestApp.database.entities.Person;
 import xyz.mlhmz.rapidTestApp.database.entities.Test;
 
@@ -27,15 +27,15 @@ public class CreateTest {
                 return;
             }
 
-            DAO dao;
+            Repository repository;
             Test test = new Test();
             test.setPositive(positiveCheckBox.isSelected());
             test.setTestDate(new Date());
             Person person = (Person) personList.getSelectedValue();
             test.setPersonId(person.getId());
-            dao = new Tests();
+            repository = new Tests();
 
-            dao.create(test);
+            repository.create(test);
 
             frame.dispose();
 
@@ -55,11 +55,11 @@ public class CreateTest {
     }
 
     public void reloadList() {
-        DAO dao;
-        dao = new Persons();
+        Repository repository;
+        repository = new Persons();
 
         personListModel = new DefaultListModel<Person>();
-        personListModel.addAll(dao.get());
+        personListModel.addAll(repository.get());
 
         personList.setModel(personListModel);
     }

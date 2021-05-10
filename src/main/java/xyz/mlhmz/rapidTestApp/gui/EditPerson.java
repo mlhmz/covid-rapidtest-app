@@ -1,7 +1,7 @@
 package xyz.mlhmz.rapidTestApp.gui;
 
-import xyz.mlhmz.rapidTestApp.database.dao.DAO;
-import xyz.mlhmz.rapidTestApp.database.dao.Persons;
+import xyz.mlhmz.rapidTestApp.database.repositories.Repository;
+import xyz.mlhmz.rapidTestApp.database.repositories.Persons;
 import xyz.mlhmz.rapidTestApp.database.entities.Person;
 
 import javax.swing.*;
@@ -60,7 +60,7 @@ public class EditPerson {
         });
 
         submitBtn.addActionListener(e ->  {
-            DAO dao = new Persons();
+            Repository repository = new Persons();
             Person person = new Person();
 
             if (firstNameCheckBox.isSelected()) {
@@ -79,7 +79,7 @@ public class EditPerson {
                 person.setPhoneNumber(phoneNumberTextBox.getText());
             }
 
-            dao.update(id, person);
+            repository.update(id, person);
             frame.dispose();
         });
 

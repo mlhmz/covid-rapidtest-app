@@ -1,4 +1,4 @@
-package xyz.mlhmz.rapidTestApp.database.dao;
+package xyz.mlhmz.rapidTestApp.database.repositories;
 
 import xyz.mlhmz.rapidTestApp.database.entities.Person;
 
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Persons implements DAO {
+public class Persons implements Repository {
     private static final Logger logger = Logger.getLogger(Persons.class.getName());
 
     @Override

@@ -1,11 +1,11 @@
-package xyz.mlhmz.rapidTestApp.database.dao;
+package xyz.mlhmz.rapidTestApp.database.repositories;
 
 import xyz.mlhmz.rapidTestApp.database.EntityManagerUtil;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 
-public interface DAO {
+public interface Repository {
     EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
     // Creates an Entity by just giving an Object, an ID is created automatically.
