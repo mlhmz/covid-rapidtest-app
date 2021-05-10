@@ -10,10 +10,6 @@ Users can search, see and manage Data in this App.
 There are no bugs that I saw so far. 
 If someone finds something, report it in the Issues Tab. 
 
-## W.I.P Features
-User Selection in Test Creation Dialog
-
-
 ## Installation
 ### Requirements
 For the installation you will need an MySQL Database.
