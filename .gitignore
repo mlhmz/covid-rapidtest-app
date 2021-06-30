@@ -2,3 +2,4 @@
 /target/
 /covid-rapidtest-app.iml
 /.idea/
+/src/main/resources/persistence.xml
