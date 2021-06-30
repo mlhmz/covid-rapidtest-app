@@ -22,7 +22,6 @@ public class Person {
     }
 
     public Person(String firstname, String lastname, String address, String phoneNumber) {
-        this.id = id;
         this.firstName = firstname;
         this.lastName = lastname;
         this.address = address;
