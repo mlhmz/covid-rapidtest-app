@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainWindow {
@@ -285,8 +286,6 @@ public class MainWindow {
                     person.getAddress(),
                     person.getPhoneNumber()};
             newTableModel.addRow(data);
-
-
         }
 
         testTable.setModel(newTableModel);
@@ -320,6 +319,8 @@ public class MainWindow {
 
         repository = new Tests();
 
+        ArrayList<Object[]> dataList = new ArrayList<>();
+
         switch(searchMode) {
             case BY_NAME:
                 for (Object o : repository.get()) {
@@ -331,7 +332,7 @@ public class MainWindow {
 
                     String searchedName = (String) searchData;
 
-                    if (personName.toLowerCase().equals(searchedName.toLowerCase())) {
+                    if (personName.toLowerCase().contains(searchedName.toLowerCase())) {
                         String testResult = "null";
                         if (test.isPositive()) {
                             testResult = "positive";
@@ -346,10 +347,20 @@ public class MainWindow {
                                 person.getLastName(),
                                 person.getAddress(),
                                 person.getPhoneNumber()};
-                        newTableModel.addRow(data);
-                        testTable.setModel(newTableModel);
+                        dataList.add(data);
                     }
 
+
+
+                }
+                if (!dataList.isEmpty()) {
+                    for (Object[] data : dataList) {
+                        newTableModel.addRow(data);
+                    }
+
+                    testTable.setModel(newTableModel);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Es konnte kein Testeintrag gefunden werden.");
                 }
                 break;
             case BY_TEST_ID:
@@ -372,9 +383,17 @@ public class MainWindow {
                                 person.getLastName(),
                                 person.getAddress(),
                                 person.getPhoneNumber()};
-                        newTableModel.addRow(data);
-                        testTable.setModel(newTableModel);
+                        dataList.add(data);
                     }
+                }
+                if (!dataList.isEmpty()) {
+                    for (Object[] data : dataList) {
+                        newTableModel.addRow(data);
+                    }
+
+                    testTable.setModel(newTableModel);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Es konnte kein Testeintrag gefunden werden.");
                 }
                 break;
             case BY_PERSON_ID:
@@ -397,8 +416,16 @@ public class MainWindow {
                                 person.getLastName(),
                                 person.getAddress(),
                                 person.getPhoneNumber()};
-                        newTableModel.addRow(data);
+                        dataList.add(data);
+                    }
+                    if (!dataList.isEmpty()) {
+                        for (Object[] data : dataList) {
+                            newTableModel.addRow(data);
+                        }
+
                         testTable.setModel(newTableModel);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Es konnte kein Testeintrag gefunden werden.");
                     }
                 }
                 break;
