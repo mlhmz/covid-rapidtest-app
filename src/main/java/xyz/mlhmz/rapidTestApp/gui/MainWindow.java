@@ -270,7 +270,7 @@ public class MainWindow {
             Test test = (Test) o;
             repository = new Persons();
             Person person = (Person) repository.getById(test.getPersonId());
-            String testResult = "null";
+            String testResult;
             if (test.isPositive()) {
                 testResult = "positive";
             } else {
@@ -333,7 +333,7 @@ public class MainWindow {
                     String searchedName = (String) searchData;
 
                     if (personName.toLowerCase().contains(searchedName.toLowerCase())) {
-                        String testResult = "null";
+                        String testResult;
                         if (test.isPositive()) {
                             testResult = "positive";
                         } else {
@@ -369,7 +369,7 @@ public class MainWindow {
                     if (test.getTestId().equals(Long.parseLong((String) searchData))) {
                         repository = new Persons();
                         Person person = (Person) repository.getById(test.getPersonId());
-                        String testResult = "null";
+                        String testResult;
                         if (test.isPositive()) {
                             testResult = "positive";
                         } else {
@@ -402,7 +402,7 @@ public class MainWindow {
                     if (test.getPersonId().equals(Long.parseLong((String) searchData))) {
                         repository = new Persons();
                         Person person = (Person) repository.getById(test.getPersonId());
-                        String testResult = "null";
+                        String testResult;
                         if (test.isPositive()) {
                             testResult = "positive";
                         } else {
