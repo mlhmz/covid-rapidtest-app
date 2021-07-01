@@ -321,6 +321,8 @@ public class MainWindow {
 
         ArrayList<Object[]> dataList = new ArrayList<>();
 
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm aa");
+
         switch(searchMode) {
             case BY_NAME:
                 for (Object o : repository.get()) {
@@ -340,7 +342,7 @@ public class MainWindow {
                             testResult = "negative";
                         }
                         Object[] data = {test.getTestId(),
-                                test.getTestDate(),
+                                formatter.format(test.getTestDate()),
                                 testResult,
                                 test.getPersonId(),
                                 person.getFirstName(),
@@ -376,7 +378,7 @@ public class MainWindow {
                             testResult = "negative";
                         }
                         Object[] data = {test.getTestId(),
-                                test.getTestDate(),
+                                formatter.format(test.getTestDate()),
                                 testResult,
                                 test.getPersonId(),
                                 person.getFirstName(),
@@ -409,7 +411,7 @@ public class MainWindow {
                             testResult = "negative";
                         }
                         Object[] data = {test.getTestId(),
-                                test.getTestDate(),
+                                formatter.format(test.getTestDate()),
                                 testResult,
                                 test.getPersonId(),
                                 person.getFirstName(),
