@@ -41,11 +41,9 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="7f61c" class="javax.swing.JList" binding="personList">
+          <component id="9599c" class="javax.swing.JTable" binding="personTable">
             <constraints/>
-            <properties>
-              <model/>
-            </properties>
+            <properties/>
           </component>
         </children>
       </scrollpane>
